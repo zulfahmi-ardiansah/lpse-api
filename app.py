@@ -7,7 +7,7 @@ import os
 # Initiate App
 app = Flask(__name__)
 app_port = 5000
-chrome_driver = init_chrome_driver(os.name, True)
+chrome_driver = init_chrome_driver(os.name, False)
 
 
 # Swagger Guide
