@@ -1,0 +1,220 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "LPSE API",
+        "description": "Webservice untuk mendapatkan data LPSE dari seluruh Indonesia.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/daftarLpse": {
+            "get": {
+                "tags" : ["Endpoint"],
+                "summary": "Mendapatkan seluruh URL LPSE seluruh Indonesia.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type":[]
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : []
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/daftarTender": {
+            "post": {
+                "tags" : ["Endpoint"],
+                "summary": "Mendapatkan data tender dari sebuah LPSE.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "limit": {
+                                        "type": "integer"
+                                    },
+                                    "order": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type":[]
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : []
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/detailTender": {
+            "post": {
+                "tags" : ["Endpoint"],
+                "summary": "Mendapatkan detail pengumuman tender.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type": {}
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : {}
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/jadwalTender": {
+            "post": {
+                "tags" : ["Endpoint"],
+                "summary": "Mendapatkan jadwal pengumuman tender.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type":[]
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : []
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
