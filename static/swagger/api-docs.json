@@ -41,9 +41,13 @@
                                             "message" : "string",
                                             "data" : [
                                                 {
-                                                    "nama": "string",
-                                                    "url": "string",
-                                                    "status": "string"
+                                                  "alamat": "string",
+                                                  "helpdesk": "string",
+                                                  "id": "string",
+                                                  "logo": "string",
+                                                  "nama": "string",
+                                                  "provinsi": "string",
+                                                  "url": "string"
                                                 }
                                             ]
                                         }
@@ -202,6 +206,209 @@
             "post": {
                 "tags" : ["Tender"],
                 "summary": "Mendapatkan jadwal pengumuman tender.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type":[]
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : [
+                                                {
+                                                  "mulai": "string",
+                                                  "no": "string",
+                                                  "perubahan": "string",
+                                                  "sampai": "string",
+                                                  "tahap": "string"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/daftarNonTender": {
+            "post": {
+                "tags" : ["Non Tender"],
+                "summary": "Mendapatkan data non tender dari sebuah LPSE.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "limit": {
+                                        "type": "integer"
+                                    },
+                                    "order": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type":[]
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : [
+                                                 {
+                                                  "fase": "string",
+                                                  "instansi": "string",
+                                                  "judul": "string",
+                                                  "kode": "string",
+                                                  "metode": "string",
+                                                  "nilai": "string",
+                                                  "proses": "string",
+                                                  "template": "string",
+                                                  "url_jadwal": "string",
+                                                  "url_detail": "string"
+                                                 }
+                                            ]
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/detailNonTender": {
+            "post": {
+                "tags" : ["Non Tender"],
+                "summary": "Mendapatkan detail pengumuman non tender.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": [
+                                        {
+                                            "properties" : {
+                                                "status" : {
+                                                    "type":0
+                                                },
+                                                "message" : {
+                                                    "type":"string"
+                                                },
+                                                "data" : {
+                                                    "type":{}
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "example": [
+                                        {
+                                            "status" : 0,
+                                            "message" : "string",
+                                            "data" : {
+                                                "cara_pembayaran": "string",
+                                                "instansi": "string",
+                                                "jenis_kontrak": "string",
+                                                "kategori": "string",
+                                                "kode_tender": "string",
+                                                "kualifikasi_usaha": "string",
+                                                "nama_tender": "string",
+                                                "nilai_hps_paket": "string",
+                                                "nilai_pagu_paket": "string",
+                                                "peserta_tender": "string",
+                                                "satuan_kerja": "string",
+                                                "sistem_pengadaan": "string",
+                                                "syarat_kualifikasi": "string",
+                                                "tahap_tender": "string",
+                                                "tahun_anggaran": "string",
+                                                "tanggal_pembuatan": "string"
+                                            }
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/jadwalNonTender": {
+            "post": {
+                "tags" : ["Non Tender"],
+                "summary": "Mendapatkan jadwal pengumuman non tender.",
                 "requestBody": {
                     "content": {
                         "application/json": {

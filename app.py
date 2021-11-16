@@ -1,13 +1,15 @@
 # Import Library
 from flask import Flask, request, jsonify, render_template
-from utility import tender_daftar, tender_detail, lpse_daftar, define_response, init_chrome_driver, tender_jadwal
+from utility import tender_daftar, tender_detail, lpse_daftar, nontender_daftar, \
+    define_response, init_chrome_driver, tender_jadwal, nontender_detail, nontender_jadwal
 import os
 
 
 # Initiate App
 app = Flask(__name__)
 app_port = 5000
-chrome_driver = init_chrome_driver(os.name, True)
+heroku_switch = False
+chrome_driver = init_chrome_driver(os.name, heroku_switch)
 
 
 # Swagger Guide
@@ -20,6 +22,47 @@ def get_swagger_guide():
 @app.get("/daftarLpse")
 def get_list_url():
     return jsonify(lpse_daftar())
+
+
+# Daftar Tender
+@app.post("/daftarNonTender")
+def get_daftar_non_tender():
+    sc_result = define_response([], 500, "Error : URL is empty")
+    if request.is_json:
+        if "url" in request.json:
+            req_url = request.json["url"]
+            req_limit = 0
+            req_order = "desc"
+            if "limit" in request.json:
+                req_limit = int(request.json["limit"])
+            if "order" in request.json:
+                if str(request.json["order"]).lower() in ["desc", "asc"]:
+                    req_order = str(request.json["order"]).lower()
+            sc_url = req_url + ("" if req_url[-1] == "/" else "/")
+            sc_result = nontender_daftar(sc_url, int(req_limit), chrome_driver, req_order)
+    return jsonify(sc_result)
+
+
+# Detail Non Tender
+@app.post("/detailNonTender")
+def get_detail_non_tender():
+    sc_result = define_response([], 500, "Error : URL is empty")
+    if request.is_json:
+        if "url" in request.json:
+            sc_url = request.json["url"]
+            sc_result = nontender_detail(sc_url, chrome_driver)
+    return jsonify(sc_result)
+
+
+# Jadwal Non Tender
+@app.post("/jadwalNonTender")
+def get_jadwal_non_tender():
+    sc_result = define_response([], 500, "Error : URL is empty")
+    if request.is_json:
+        if "url" in request.json:
+            sc_url = request.json["url"]
+            sc_result = nontender_jadwal(sc_url, chrome_driver)
+    return jsonify(sc_result)
 
 
 # Daftar Tender
