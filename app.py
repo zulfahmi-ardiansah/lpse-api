@@ -7,7 +7,7 @@ import os
 # Initiate App
 app = Flask(__name__)
 app_port = 5000
-chrome_driver = init_chrome_driver(os.name, False)
+chrome_driver = init_chrome_driver(os.name, True)
 
 
 # Swagger Guide
@@ -44,26 +44,22 @@ def get_daftar_tender():
 # Detail Tender
 @app.post("/detailTender")
 def get_detail_tender():
-    sc_result = define_response([], 500, "Error : URL or code is empty")
+    sc_result = define_response([], 500, "Error : URL is empty")
     if request.is_json:
-        if "code" in request.json and "url" in request.json:
-            req_code = request.json["code"]
-            req_url = request.json["url"]
-            sc_url = req_url + ("" if req_url[-1] == "/" else "/")
-            sc_result = tender_detail(sc_url, req_code, chrome_driver)
+        if "url" in request.json:
+            sc_url = request.json["url"]
+            sc_result = tender_detail(sc_url, chrome_driver)
     return jsonify(sc_result)
 
 
 # Jadwal Tender
 @app.post("/jadwalTender")
 def get_jadwal_tender():
-    sc_result = define_response([], 500, "Error : URL or code is empty")
+    sc_result = define_response([], 500, "Error : URL is empty")
     if request.is_json:
-        if "code" in request.json and "url" in request.json:
-            req_code = request.json["code"]
-            req_url = request.json["url"]
-            sc_url = req_url + ("" if req_url[-1] == "/" else "/")
-            sc_result = tender_jadwal(sc_url, req_code, chrome_driver)
+        if "url" in request.json:
+            sc_url = request.json["url"]
+            sc_result = tender_jadwal(sc_url, chrome_driver)
     return jsonify(sc_result)
 
 

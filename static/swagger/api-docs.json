@@ -2,13 +2,18 @@
     "openapi": "3.0.0",
     "info": {
         "title": "LPSE API",
-        "description": "Webservice untuk mendapatkan data LPSE dari seluruh Indonesia.",
-        "version": "1.0.0"
+        "description": "Webservice untuk mendapatkan data LPSE dari seluruh Indonesia yang menggunakan SPSE Versi 4.x.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Developer",
+            "url": "https://zulfahmi-ardiansah.github.io/",
+            "email": "dev.id.acc@gmail.com"
+        }
     },
     "paths": {
         "/daftarLpse": {
             "get": {
-                "tags" : ["Endpoint"],
+                "tags" : ["Inaproc"],
                 "summary": "Mendapatkan seluruh URL LPSE seluruh Indonesia.",
                 "responses": {
                     "200": {
@@ -34,7 +39,13 @@
                                         {
                                             "status" : 0,
                                             "message" : "string",
-                                            "data" : []
+                                            "data" : [
+                                                {
+                                                    "nama": "string",
+                                                    "url": "string",
+                                                    "status": "string"
+                                                }
+                                            ]
                                         }
                                     ],
                                     "type": "array"
@@ -47,7 +58,7 @@
         },
         "/daftarTender": {
             "post": {
-                "tags" : ["Endpoint"],
+                "tags" : ["Tender"],
                 "summary": "Mendapatkan data tender dari sebuah LPSE.",
                 "requestBody": {
                     "content": {
@@ -93,7 +104,20 @@
                                         {
                                             "status" : 0,
                                             "message" : "string",
-                                            "data" : []
+                                            "data" : [
+                                                 {
+                                                  "fase": "string",
+                                                  "instansi": "string",
+                                                  "judul": "string",
+                                                  "kode": "string",
+                                                  "metode": "string",
+                                                  "nilai": "string",
+                                                  "proses": "string",
+                                                  "template": "string",
+                                                  "url_jadwal": "string",
+                                                  "url_detail": "string"
+                                                 }
+                                            ]
                                         }
                                     ],
                                     "type": "array"
@@ -106,7 +130,7 @@
         },
         "/detailTender": {
             "post": {
-                "tags" : ["Endpoint"],
+                "tags" : ["Tender"],
                 "summary": "Mendapatkan detail pengumuman tender.",
                 "requestBody": {
                     "content": {
@@ -114,9 +138,6 @@
                             "schema": {
                                 "properties": {
                                     "url": {
-                                        "type": "string"
-                                    },
-                                    "code": {
                                         "type": "string"
                                     }
                                 },
@@ -140,7 +161,7 @@
                                                     "type":"string"
                                                 },
                                                 "data" : {
-                                                    "type": {}
+                                                    "type":{}
                                                 }
                                             }
                                         }
@@ -149,7 +170,24 @@
                                         {
                                             "status" : 0,
                                             "message" : "string",
-                                            "data" : {}
+                                            "data" : {
+                                                "cara_pembayaran": "string",
+                                                "instansi": "string",
+                                                "jenis_kontrak": "string",
+                                                "kategori": "string",
+                                                "kode_tender": "string",
+                                                "kualifikasi_usaha": "string",
+                                                "nama_tender": "string",
+                                                "nilai_hps_paket": "string",
+                                                "nilai_pagu_paket": "string",
+                                                "peserta_tender": "string",
+                                                "satuan_kerja": "string",
+                                                "sistem_pengadaan": "string",
+                                                "syarat_kualifikasi": "string",
+                                                "tahap_tender": "string",
+                                                "tahun_anggaran": "string",
+                                                "tanggal_pembuatan": "string"
+                                            }
                                         }
                                     ],
                                     "type": "array"
@@ -162,7 +200,7 @@
         },
         "/jadwalTender": {
             "post": {
-                "tags" : ["Endpoint"],
+                "tags" : ["Tender"],
                 "summary": "Mendapatkan jadwal pengumuman tender.",
                 "requestBody": {
                     "content": {
@@ -170,9 +208,6 @@
                             "schema": {
                                 "properties": {
                                     "url": {
-                                        "type": "string"
-                                    },
-                                    "code": {
                                         "type": "string"
                                     }
                                 },
@@ -205,7 +240,15 @@
                                         {
                                             "status" : 0,
                                             "message" : "string",
-                                            "data" : []
+                                            "data" : [
+                                                {
+                                                  "mulai": "string",
+                                                  "no": "string",
+                                                  "perubahan": "string",
+                                                  "sampai": "string",
+                                                  "tahap": "string"
+                                                }
+                                            ]
                                         }
                                     ],
                                     "type": "array"
